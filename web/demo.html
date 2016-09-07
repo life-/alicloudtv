@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"   content="width=device-width, height=device-height, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>视频直播－云上创业</title>
+    <link rel="stylesheet" href="http://g.alicdn.com/de/prismplayer/1.4.2/skins/default/index.css" />
+    <script type="text/javascript" src="http://g.alicdn.com/de/prismplayer/1.4.2/prism.js"></script>
+    </style>
+<script type="text/javascript" src="static/js/jquery-1.11.1.js"></script>
+<script type='text/javascript' src='static/sdk/strophe.js'></script>
+<script type="text/javascript" src="static/sdk/easemob.im-1.1.1.js"></script>
+<script type="text/javascript" src="static/sdk/easemob.im.shim.js"></script>
+<script type="text/javascript" src="static/js/bootstrap.js"></script>
+</head>
+<body>
+<table width = "1280"  border="0">
+<tr>
+<td colspan="2" style="background-color:#FFA500;">
+<h1>视频直播</h1>
+</td>
+</tr>
+<tr>
+  <td>
+<div id="container">
+    <div class="prism-player" id="J_prismPlayer"> </div> 
+    <script>
+
+            var player = new prismplayer({
+                id: 'J_prismPlayer',
+                width: '100%',
+                height: '720px',
+                barMode: 0,
+       		source: 'http://livevideo.nongfuguoyuan.mobi/test1/ucast.flv',
+                autoplay: false,
+                isLive:true,
+                cover:'http://077262.oss-cn-hangzhou.aliyuncs.com/demo/video_pic.png'
+            });
+
+    </script>
+  </td> 
+<td>  
+
+<div id="js-send-msg" class="chat-feat clearfix">
+                            <textarea class="cs-textarea" name="" maxlength="50" placeholder="这里输入聊天内容" tabindex="1" data-type="cont"></textarea>
+                            <p class="login-inside" data-type="log"><a class="is-log" href="javascript:;" data-type="login">登录</a>发弹幕，参与主播互动</p>
+                            <div class="b-btn b-btn-gray" data-type="send">发送</div>
+                        </div>
+
+
+<div id="login-box">
+	用户名：<input type="text" id="usename"/>
+	密码：<input type="password" id="password"/><br>
+	<input type="button" value="登录" id="login" />
+</div>
+<script type="text/javascript">
+$(function() {
+        var conn = null;
+        conn = new Easemob.im.Connection();
+        $('body').on('click', '#login', function() {
+                var username = $("#usename").val();
+                var pass = $("#password").val();
+                conn.open({
+                        user : username,
+                        pwd : pass,
+                        appKey : 'yoursdon#livestreaming'
+                });
+        })
+        conn.init({
+                onOpened : function() {
+                        alert("成功登录");
+                        conn.setPresence();
+                }
+        });
+});
+</script>
+</td>
+</tr>
+
+<tr>
+<td colspan="2" style="background-color:#FFA500;text-align:center;">
+Copyright  © elmle.com.cn</td>
+</tr>
+</table>
+</body>
+</html>
